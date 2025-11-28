@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:15
+    container_name: adspace-db-container
+    environment:
+      POSTGRES_DB: booking-system-backend
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - adspace_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d booking-system-backend"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adspace-app-container
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/booking-system-backend
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SPRING_FLYWAY_ENABLED: "true"
+
+  test:
+    image: maven:3.9.6-eclipse-temurin-17
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: mvn test
+
+volumes:
+  adspace_pgdata:
