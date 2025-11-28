@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Ad_Space_Booking_System</artifactId>
+    <artifactId>booking-system-backend</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
