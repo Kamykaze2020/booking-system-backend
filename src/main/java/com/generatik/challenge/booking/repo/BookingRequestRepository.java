@@ -21,6 +21,8 @@ public interface BookingRequestRepository extends JpaRepository<BookingRequestEn
   """)
     boolean existsApprovedOverlap(Long adSpaceId, LocalDate startDate, LocalDate endDate);
 
+    boolean existsByAdSpace_Id(Long adSpaceId);
+
     @EntityGraph(attributePaths = "adSpace")
     List<BookingRequestEntity> findByStatus(BookingStatus status);
 

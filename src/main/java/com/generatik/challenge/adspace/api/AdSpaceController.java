@@ -37,5 +37,11 @@ public class AdSpaceController {
     public AdSpaceDetailsDto create(@Valid @RequestBody CreateAdSpaceRequestDto req) {
         return AdSpaceMapper.toDetailsDto(service.create(req));
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        service.deleteById(id);
+    }
 }
 
