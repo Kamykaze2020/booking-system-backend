@@ -4,6 +4,10 @@ Spring Boot backend for managing **ad spaces** (billboards, bus stops, mall disp
 
 ---
 
+<img width="1918" height="981" alt="1" src="https://github.com/user-attachments/assets/7187cebf-f0a7-4683-80bc-9f09b5132381" />
+
+---
+
 ## What this backend does
 
 ### Ad Spaces
